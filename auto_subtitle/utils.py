@@ -3,9 +3,7 @@ from typing import Iterator, TextIO
 
 
 def str2bool(string):
-    string = string.lower()
-    str2val = {"true": True, "false": False}
-
+    str2val = {"True": True, "False": False}
     if string in str2val:
         return str2val[string]
     else:
