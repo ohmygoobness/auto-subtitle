@@ -5,6 +5,7 @@ import argparse
 import warnings
 import tempfile
 from .utils import filename, str2bool, write_srt
+from whisper.tokenizer import LANGUAGES, TO_LANGUAGE_CODE
 
 
 def main():
@@ -24,6 +25,8 @@ def main():
 
     parser.add_argument("--only_srt", default=False, action='store_true',
                         help="only a srt file is generated and not a subtitled video")
+    
+    parser.add_argument("--language", type=str, default=None, choices=sorted(LANGUAGES.keys()) + sorted([k.title() for k in TO_LANGUAGE_CODE.keys()]), help="language spoken in the audio, specify None to perform language detection")
 
     args = parser.parse_args().__dict__
     model_name: str = args.pop("model")
